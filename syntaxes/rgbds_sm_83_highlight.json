@@ -1,0 +1,347 @@
+{
+  "name": "RGBDS GB Z80 Assembly (Expanded for SM83)",
+  "scopeName": "source.asm.gbz80",
+  "patterns": [
+    
+    {
+      "comment": "Global Label Definitions with Double Colon",
+      "name": "entity.name.label.global.doublecolon.definition.gbz80",
+      "match": "^[ \\t]*([a-zA-Z_][\\w#@]*)(?=::)",
+      "captures": {
+        "1": { "name": "entity.name.label.global.doublecolon.definition.gbz80" }
+      }
+    },
+
+    {
+     "comment": "Global Label Definitions (non-dot-prefixed, ending with single colon)",
+    "name": "entity.name.label.global.definition.gbz80",
+    "match": "^[ \\t]*[a-zA-Z_][\\w#@]*:(?=\\s|$)"
+    },
+
+    {
+    "comment": "Local Label Definitions (dot-prefixed, colon optional)",
+    "name": "entity.name.label.local.definition.gbz80",
+    "match": "^[ \\t]*\\.[a-zA-Z_][\\w#@]*[:]?\\b"
+    },
+
+    {
+      "comment": "Standalone Label/Macro References (lines that start with a symbol but are not instructions, not macros, not pseudo-ops)",
+      "name": "entity.name.label.reference.gbz80",
+      "match": "^[ \t]*(?!MACRO\\b|ENDM\\b|DEF\\b|EQU\\b|SECTION\\b|INCLUDE\\b|SET\\b|call\\b|jp\\b|jr\\b|rst\\b|ld\\b|cp\\b|add\\b|sub\\b|inc\\b|dec\\b|and\\b|or\\b|xor\\b|bit\\b|res\\b|set\\b|push\\b|pop\\b|ret\\b|nop\\b|halt\\b|di\\b|ei\\b|rlca\\b|rrca\\b|rla\\b|rra\\b|daa\\b|cpl\\b|scf\\b|ccf\\b|sla\\b|reti\\b|ds\\b|rb\\b|rw\\b|rl\\b|db\\b|dw\\b|dl\\b|rsreset\\b|rsset\\b|print\\b|println\\b|printt\\b|printv\\b|printi\\b|printf\\b|assert\\b|static_assert\\b|fatal\\b|fail\\b|warn\\b|if\\b|elif\\b|else\\b|endc\\b|break\\b|for\\b|rept\\b|endr\\b|div\\b|mul\\b|fmod\\b|sin\\b|cos\\b|tan\\b|asin\\b|acos\\b|atan\\b|atan2\\b|strcat\\b|strcmp\\b|strin\\b|strlen\\b|strlwr\\b|strsub\\b|strupr\\b|incharmap\\b|charlen\\b|charsub\\b|bank\\b|sizeof\\b|startof\\b|def\\b|high\\b|low\\b|isconst\\b|ceil\\b|floor\\b|log\\b|pow\\b|round\\b|strfmt\\b|strrin\\b|strrpl\\b)([a-zA-Z_][\\w#@]*)\\b(?![ \t]*:)"
+    },
+
+    {
+      "comment": "Data Transfer Instructions",
+      "name": "keyword.op.transfer.gbz80",
+      "match": "^[ \\t]*:?[ \\t]*\\b(?i:ld|ldh|ldi|ldd|push|pop)\\b"
+    },
+
+    {
+      "comment": "Arithmetic Instructions",
+      "name": "keyword.op.arithmetic.gbz80",
+      "match": "^[ \\t]*:?[ \\t]*\\b(?i:add|adc|sub|sbc|inc|dec)\\b"
+    },
+
+    {
+      "comment": "Bitwise Logic Instructions",
+      "name": "keyword.op.logic.gbz80",
+      "match": "^[ \\t]*:?[ \\t]*\\b(?i:and|or|xor|cp)\\b"
+    },
+    {
+    "comment": "Rotate and Shift Instructions",
+    "name": "keyword.op.rotate.gbz80",
+    "match": "^[ \\t]*:?[ \\t]*\\b(?i:rlca|rla|rrca|rra|rlc|rl|rrc|rr|sla|sra|swap|srl)\\b"
+    },
+
+    {
+    "comment": "Bit Manipulation Instructions (CB-Prefix)",
+    "name": "keyword.op.bit.gbz80",
+    "match": "^[ \\t]*:?[ \\t]*\\b(?i:bit|set|res)\\b"
+    },
+
+    {
+      "comment": "Control Flow (Jump/Call/Return)",
+      "name": "keyword.op.controlflow.gbz80",
+      "match": "^[ \\t]*:?[ \\t]*\\b(?i:jp|jr|call|ret|reti|rst)\\b"
+    },
+    
+    {
+      "comment": "Condition Codes (z, nz, c, nc)",
+      "name": "keyword.condition.gbz80",
+      "match": "\\b(?i:z|nz|c|nc)\\b"
+    },
+
+    {
+      "comment": "Stack and CPU Control",
+      "name": "keyword.op.cpucontrol.gbz80",
+      "match": "^[ \\t]*:?[ \\t]*\\b(?i:nop|halt|stop|di|ei)\\b"
+    },
+
+    {
+      "comment": "Accumulator / Flag Utilities",
+      "name": "keyword.op.accflags.gbz80",
+      "match": "^[ \\t]*:?[ \\t]*\\b(?i:daa|cpl|scf|ccf)\\b"
+    },
+
+    {
+      "comment": "8-bit CPU Registers",
+      "name": "variable.register.8bit.gbz80",
+      "match": "\\b(?i:a|b|c|d|e|h|l)\\b"
+    },
+
+    {
+      "comment": "16-bit Register Pairs",
+      "name": "variable.register.16bit.gbz80",
+      "match": "\\b(?i:af|bc|de|hl|sp|pc)\\b"
+    },
+
+    {
+      "comment": "Hardware Registers (MMIO)",
+      "name": "support.constant.hardware.gbz80",
+      "match": "\\b(?i:LCDC|STAT|SCY|SCX|LY|LYC|DMA|BGP|OBP0|OBP1|WX|WY|IE|IF|DIV|TIMA|TMA|TAC)\\b"
+    },
+
+    {
+      "comment": "GB Graphics Constants",
+      "name": "constant.numeric.gbgfx.gbz80",
+      "match": "`[0-3][_0-3]*\\b"
+    },
+
+    {
+    "comment": "DEF-EQU Combo Line (DEF Symbol EQU Value)",
+    "name": "meta.definition.constant.defequ.gbz80",
+    "match": "^[ \\t]*(DEF)[ \\t]+([a-zA-Z_][\\w#@]*)[ \\t]+(EQU)[ \\t]+([^\\s;]+)",
+    "captures": {
+      "1": { "name": "keyword.directive.pseudo.gbz80" },
+      "2": { "name": "entity.name.constant.define.gbz80" },
+      "3": { "name": "keyword.directive.pseudo.gbz80" },
+      "4": { "name": "constant.numeric.gbz80" }
+      }
+    },
+
+    {
+      "comment": "Macro Names (Identifiers after MACRO keyword)",
+      "name": "meta.definition.macro.gbz80",
+      "match": "^[ \\t]*MACRO[ \\t]+([a-zA-Z_][\\w#@]*)",
+      "captures": {
+        "1": {
+          "name": "entity.name.function.macro.gbz80"
+        }
+      }
+    },
+
+    {
+      "comment": "Section Name String (After SECTION Keyword)",
+      "name": "meta.definition.section.gbz80",
+      "match": "^[ \\t]*SECTION\\b[ \\t]+(\"[^\"]+\")",
+      "captures": {
+        "1": {
+          "name": "entity.name.section.gbz80"
+        }
+      }
+    },
+
+    {
+      "comment": "File Include Path (After INCLUDE Keyword)",
+      "name": "meta.definition.include.gbz80",
+      "match": "^[ \\t]*INCLUDE\\b[ \\t]+(\"[^\"]+\")",
+      "captures": {
+        "1": {
+          "name": "string.quoted.double.include.gbz80"
+        }
+      }
+    },
+
+    
+
+    {
+      "comment": "Symbolic Operand Variables or Memory References in Brackets",
+      "name": "variable.other.symbolic.gbz80",
+      "match": "\\[[ \t]*[a-zA-Z_][\\w#@]*[ \t]*\\]"
+    },
+
+    {
+     "comment": "Unbracketed Symbolic Operands (constants like STATE_DEMO_SELECT)",
+     "name": "variable.other.symbolic.gbz80",
+     "match": "\\b[A-Z_][A-Z0-9_]*\\b"
+    },
+
+    {
+      "comment": "Hexadecimal Constants ($FF, 0xA3)",
+      "name": "constant.numeric.hex.gbz80",
+      "match": "\\b(?:\\$[0-9A-Fa-f]+|0x[0-9A-Fa-f]+)\\b"
+    },
+
+    {
+      "comment": "Binary Constants (%10101010)",
+      "name": "constant.numeric.binary.gbz80",
+      "match": "\\b%[01]+\\b"
+    },
+
+    {
+      "comment": "Decimal Constants",
+      "name": "constant.numeric.decimal.gbz80",
+      "match": "\\b\\d[_\\d]*\\b"
+    },
+
+    {
+      "comment": "Octal Constants",
+      "name": "constant.numeric.octal.gbz80",
+      "match": "\\&[0-7][_0-7]*\\b"
+    },
+
+    {
+      "comment": "Fixed-Point Numbers",
+      "name": "constant.numeric.fixed.gbz80",
+      "match": "\\b\\d[_\\d]*\\.\\d+(?:q\\d+)?\\b"
+    },
+
+    {
+      "comment": "Directives and Pseudo-Ops (Consolidated)",
+      "name": "keyword.directive.pseudo.gbz80",
+      "match": "^[ \\t]*\\b(?i:include|section|set|org|db|dw|dl|ds|rsset|rsreset|rb|rw|endl|incbin|export|global|equs|redef|endsection|rom0|romx|vram|sram|wram0|wramx|oam|hram|align|load)\\b"
+    },
+
+    {
+      "comment": "Scoped and Qualified Labels",
+      "name": "entity.name.label.qualified.gbz80",
+      "match": "\\b((([a-zA-Z_][\\w#@]*)?\\.)?[a-zA-Z_][\\w#@]*[:]{1,2})\\b"
+    },
+
+     {
+      "comment": "Labels and Symbols",
+      "name": "entity.name.label.gbz80",
+      "match": "^[ \\t]*[a-zA-Z_][\\w#@]*:(?=\\s|$)"
+    },
+   
+    {
+      "comment": "Macro System and Charmap",
+      "name": "keyword.directive.macro.gbz80",
+      "match": "\\b(?i:macro|endm|shift|rept|endr|purge|popc|pushc|newcharmap|charmap|setcharmap|pusho|popo|pushs|pops|opt)\\b"
+    },
+
+    {
+      "comment": "Operands (bare operands not caught by register/hardware/memory match)",
+      "name": "variable.parameter.operand.gbz80",
+      "match": "(?<![:#.$%\\w])(?:a|b|c|d|e|h|l|af|bc|de|hl|sp|pc)(?!\\w)"
+    },
+
+    {
+      "comment": "Addressing Modes (e.g., (hl), (a), ($FF00+c))",
+      "name": "variable.other.memory.gbz80",
+      "match": "\\(([^)]+)\\)"
+    },
+
+    {
+      "comment": "Triple-Quoted Strings",
+      "name": "string.quoted.triple.gbz80",
+      "begin": "\"\"\"",
+      "end": "\"\"\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.gbz80",
+          "match": "\\\\."
+        }
+      ]
+    },
+
+    {
+      "comment": "Double-Quoted Strings",
+      "name": "string.quoted.double.gbz80",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.gbz80",
+          "match": "\\\\."
+        }
+      ]
+    },
+
+    {
+      "comment": "Raw Triple-Quoted Strings",
+      "name": "string.quoted.triple.raw.gbz80",
+      "begin": "#\"\"\"",
+      "end": "\"\"\""
+    },
+
+    {
+      "comment": "Raw Double-Quoted Strings",
+      "name": "string.quoted.double.raw.gbz80",
+      "begin": "#\"",
+      "end": "\""
+    },
+
+    {
+      "comment": "Single-line Comments",
+      "name": "comment.line.semicolon.gbz80",
+      "match": ";.*$"
+    },
+
+    {
+      "comment": "Block Comments",
+      "name": "comment.block.gbz80",
+      "begin": "/\\*",
+      "end": "\\*/",
+      "captures": {
+        "0": {
+          "name": "punctuation.definition.comment.gbz80"
+        }
+      }
+    },
+
+    {
+      "comment": "Control Keywords (Flow and Logic)",
+      "name": "keyword.control.gbz80",
+      "match": "\\b(?i:print|println|printt|printv|printi|printf|assert|static_assert|fatal|fail|warn|if|elif|else|endc|break|for|rept|endr)\\b"
+    },
+
+    {
+      "comment": "Data Declaration",
+      "name": "keyword.directive.data.gbz80",
+      "match": "\\b(?i:rb|rw|rl|db|dw|dl|ds|rsreset|rsset)\\b"
+    },
+
+    {
+      "comment": "RGBDS Expression Helpers",
+      "name": "support.function.gbz80",
+      "match": "\\b(?i:div|mul|fmod|sin|cos|tan|asin|acos|atan|atan2|strcat|strcmp|strin|strlen|strlwr|strsub|strupr|incharmap|charlen|charsub|bank|sizeof|startof|def|high|low|isconst|ceil|floor|log|pow|round|strfmt|strrin|strrpl)\\b"
+    },
+
+     {
+      "comment": "Local Label References (for instructions like jr z, .demo1)",
+      "name": "entity.name.label.local.reference.gbz80",
+      "match": "(?<=\\b(jp|jr|call|rst|djnz)\\s+(?:[a-z]{1,2},\\s*)?)(\\.[a-zA-Z_][\\w#@]*)",
+      "captures": {
+        "2": {
+          "name": "entity.name.label.local.reference.gbz80"
+        }
+      }
+    },
+
+    {
+      "comment": "Global Label References (non-dot-prefixed, after jump/call/rst instructions)",
+      "name": "entity.name.label.reference.gbz80",
+      "match": "(?<=\\b(?i:jp|jr|call|rst)[ \\t]+)[a-zA-Z_][\\w#@]*\\b"
+    },
+
+      {
+      "comment": "Symbolic Variables (but NOT after control flow instructions like call/jp/jr/  rst/djnz)",
+      "name": "variable.other.symbolic.gbz80",
+      "match": "(?<!\\b(?:call|jp|jr|rst|djnz)\\s)(\\b[A-Za-z_][\\w#@]*\\b)",
+      "captures": {
+        "1": {
+          "name": "variable.other.symbolic.gbz80"
+        }
+      }
+    },
+
+    {
+      "comment": "Unknown or Invalid Instructions (catch-all fallback)",
+      "name": "invalid.illegal.instruction.gbz80",
+      "match": "^[ \\t]*\\b[a-zA-Z]{2,6}\\b"
+    }
+
+   
+  ]
+}

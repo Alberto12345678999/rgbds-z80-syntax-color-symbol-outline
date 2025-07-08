@@ -1,0 +1,21 @@
+{
+  "name": "rgbds-z80",
+  "displayName": "rgbds-z80",
+  "description": "Language service for RGBDS GB Z80.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.101.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "GB-SM-83  High Contrast",
+        "uiTheme": "hc-black",
+        "path": "./themes/GB-SM-83  High Contrast-color-theme.json"
+      }
+    ]
+  }
+}

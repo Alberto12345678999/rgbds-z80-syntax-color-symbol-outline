@@ -1,0 +1,168 @@
+{
+	"name": "rgbds-z80",
+	"displayName": "RGBDS Z80 (Orig: Donald Hays | Mod: Alberto Pilotto)",
+	"description": "Language service for RGBDS GB Z80.",
+	"version": "4.1.0",
+	"publisher": "alberto-pilotto",
+	"engines": {
+		"vscode": "^1.88.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"keywords": [
+		"rgbds",
+		"z80",
+		"gbz80",
+		"game boy",
+		"gameboy"
+	],
+	"icon": "icon.png",
+	"main": "./out/extension.js",
+	"contributes": {
+		"themes": [
+			{
+				"label": "GB-SM-83 HC Dark",
+				"uiTheme": "hc-black",
+				"path": "./rgbds-z80/themes/GB-SM-83  High Contrast-color-theme.json"
+			}
+		],
+		"problemMatchers": [
+			{
+				"name": "rgbdserror",
+				"owner": "rgbasm",
+				"fileLocation": [
+					"relative",
+					"${workspaceFolder}"
+				],
+				"pattern": [
+					{
+						"regexp": "^(warning|ERROR|error): (?:.+ -> )*(.*)\\(([0-9]+)\\)(?: -> .*)?:\\s*(\\[.*\\])?$",
+						"severity": 1,
+						"file": 2,
+						"line": 3
+					},
+					{
+						"regexp": "^\\s+(.*)$",
+						"message": 1
+					}
+				]
+			},
+			{
+				"name": "rgbdslinkerror",
+				"owner": "rgblink",
+				"pattern": {
+					"regexp": "^(warning|error): (?:(?:.+ -> )*([^:]*)(::REPT~\\d+)?(::[^\\(]+)?\\(([0-9]+)\\): )?(.+)$",
+					"severity": 1,
+					"file": 2,
+					"line": 5,
+					"message": 6
+				}
+			}
+		],
+		"languages": [
+			{
+				"id": "gbz80",
+				"extensions": [
+					".asm",
+					".z80",
+					".inc",
+					".s",
+					".sm83"
+				],
+				"aliases": [
+					"GBZ80",
+					"z80"
+				],
+				"configuration": "./gbz80-configuration.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "gbz80",
+				"path": "./snippets/gbz80.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "gbz80",
+				"scopeName": "source.asm.gbz80",
+				"path": "./syntaxes/rgbds_sm_83_highlight.json"
+			}
+		],
+		"configurationDefaults": {
+			"[gbz80]": {
+				"editor.wordBasedSuggestions": "off"
+			}
+		},
+		"configuration": [
+			{
+				"type": "object",
+				"title": "RGBDS Z80",
+				"properties": {
+					"rgbdsz80.showInstructionCompletionSuggestions": {
+						"description": "Makes Intellisense prompts include documented instruction suggestions.",
+						"type": "boolean",
+						"default": true
+					},
+					"rgbdsz80.includeAllDocCommentNewlines": {
+						"description": "Makes every line of comments in a doc comment carry through a newline literal in the output Markdown.",
+						"type": "boolean",
+						"default": false
+					},
+					"rgbdsz80.includePath": {
+						"description": "Specifies folder paths relative to the workspace root to search for include files.",
+						"type": [
+							"array",
+							"string"
+						],
+						"default": []
+					},
+					"rgbdsz80.formatting.capitalization": {
+						"description": "How to capitalize parts of the language.",
+						"type": "object",
+						"patternProperties": {
+							"^.*$": {
+								"type": [
+									"string",
+									"null"
+								],
+								"enum": [
+									"upper",
+									"lower",
+									null
+								]
+							}
+						},
+						"default": {}
+					}
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"dependencies": {
+		"xml-js": "~1.6.11"
+	},
+	"devDependencies": {
+		"@types/node": "^14.14.31",
+		"@types/vscode": "~1.88.0",
+		"typescript": "^5.8.3",
+		"vscode": "^1.1.37"
+	},
+	"homepage": "https://github.com/DonaldHays/rgbds-vscode",
+	"bugs": "https://github.com/DonaldHays/rgbds-vscode/issues",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/DonaldHays/rgbds-vscode.git"
+	},
+	"__metadata": {
+		"installedTimestamp": 1750997698971,
+		"targetPlatform": "undefined",
+		"size": 630266
+	}
+}
