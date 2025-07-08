@@ -26,6 +26,7 @@ An included problem matcher enables Visual Studio Code to highlight invalid line
 ### Documented Symbol Detection
 
 Symbols you declare are detected and populated in Intellisense prompts. It even grabs your documentation comments!
+
 - Any uninterrupted runs of lines that consist only of comments preceding a symbol declaration will be considered part of that symbol's documentation.
 - A comment on the same line as a symbol declaration is also part of its documentation.
 
