@@ -1,7 +1,7 @@
 {
-	"name": "rgbds-z80",
+	"name": "rgbds-z80-syntax-color-symbol-outline",
 	"displayName": "RGBDS Z80 (Orig: Donald Hays | Mod: Alberto Pilotto)",
-	"description": "Language service for RGBDS GB Z80.",
+	"description": "Language service for RGBDS GB Z80. Syntax highlighting and symbol outlining.\n\nThis is a fork of the original extension by Donald Hays, with some modifications and improvements.",
 	"version": "4.1.0",
 	"publisher": "alberto-pilotto",
 	"engines": {

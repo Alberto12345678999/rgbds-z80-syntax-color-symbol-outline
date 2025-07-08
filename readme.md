@@ -4,6 +4,12 @@ This extension provides support for the RGBDS flavor of the Game Boy's Z80 varia
 
 ## Features
 
+### Switch Themes Immediately
+
+To fully experience the extension, switch to the "GB-SM-83 HC Dark" theme immediately after installation. This theme is designed to complement the syntax highlighting and features of the extension.
+
+![Switch Themes](images/REMEMBER_TO_SWITCH_THEMES.png)
+
 ### Syntax Highlighting Grammar
 
 A full grammar definition for syntax highlighting is included.
@@ -15,7 +21,6 @@ A full grammar definition for syntax highlighting is included.
 Instruction snippets reveal and document every instruction the Game Boy CPU understands. The documentation even includes the number of cycles instructions take!
 
 ![documented snippets](https://raw.githubusercontent.com/DonaldHays/rgbds-vscode/master/previews/instruction-snippets.gif)
-
 
 ### Problem Matcher
 
