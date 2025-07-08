@@ -11,13 +11,14 @@ A rule applies to everything in a scope. Rules with a narrower scope override ru
 ### Examples
 
 #### All Lower
-```
+
+```json
 "rgbdsz80.formatting.capitalization": {
   "language": "lower",
 }
 ```
 
-```
+```asm
 include "MyHeader.inc"
 
 section "My Section", rom0
@@ -27,13 +28,14 @@ routine::
 ```
 
 #### All Upper
-```
+
+```json
 "rgbdsz80.formatting.capitalization": {
   "language": "upper",
 }
 ```
 
-```
+```asm
 INCLUDE "MyHeader.inc"
 
 SECTION "My Section", ROM0
@@ -43,14 +45,15 @@ routine::
 ```
 
 #### All Upper Except Section Declarations
-```
+
+```json
 "rgbdsz80.formatting.capitalization": {
   "language": "upper",
   "language.keyword.sectiondeclaration": "lower"
 }
 ```
 
-```
+```asm
 INCLUDE "MyHeader.inc"
 
 section "My Section", rom0
@@ -60,14 +63,15 @@ routine::
 ```
 
 #### All Upper Except `include`
-```
+
+```json
 "rgbdsz80.formatting.capitalization": {
   "language": "upper",
   "language.keyword.preprocessor.include": "lower"
 }
 ```
 
-```
+```asm
 include "MyHeader.inc"
 
 SECTION "My Section", ROM0
@@ -79,33 +83,50 @@ routine::
 ## Classification
 
 ### `language`
+
 #### `language.keyword`
+
 ##### `language.keyword.preprocessor`
-`include, incbin, export, global, union, fragment, nextu, endu, print, println, printt, printv, printi, printf, fail, warn, if, elif, else, endc, endsection, purge, rept, endr, opt, popo, pusho, pops, pushs, equ, set, def, redef, equs, macro, endm, shift, charmap, newcharmap, setcharmap, pushc, popc, load, endl`
+
+```text
+include, incbin, export, global, union, fragment, nextu, endu, print, println, printt, printv, printi, printf, fail, warn, if, elif, else, endc, endsection, purge, rept, endr, opt, popo, pusho, pops, pushs, equ, set, def, redef, equs, macro, endm, shift, charmap, newcharmap, setcharmap, pushc, popc, load, endl
+```
 
 ##### `language.keyword.datadirective`
 
-`rsreset, rb, rw, rl, db, dw, dl, ds`
+```text
+rsreset, rb, rw, rl, db, dw, dl, ds
+```
 
 ##### `language.keyword.sectiondeclaration`
 
-`section, rom0, romx, vram, sram, wram0, wramx, oam, hram, align, bank`
+```text
+section, rom0, romx, vram, sram, wram0, wramx, oam, hram, align, bank
+```
 
 ##### `language.keyword.function`
 
-`mul, sin, cos, tan, asin, acos, atan, atan2, strcat, strcmp, strin, strlen, strlwr, strsub, strupr, bank, def, high, low, isconst, ceil, floor, log, pow, round, strfmt, strrin, strrpl`
+```text
+mul, sin, cos, tan, asin, acos, atan, atan2, strcat, strcmp, strin, strlen, strlwr, strsub, strupr, bank, def, high, low, isconst, ceil, floor, log, pow, round, strfmt, strrin, strrpl
+```
 
 ##### `language.register`
 
-`a, f, b, c, d, e, h, l, af, bc, de, hl, hli, hld, sp, pc`
+```text
+a, f, b, c, d, e, h, l, af, bc, de, hl, hli, hld, sp, pc
+```
 
 ##### `language.conditioncode`
 
-`z, nz, c, nc`
+```text
+z, nz, c, nc
+```
 
 ##### `language.instruction`
 
-`adc, add, and, bit, call, ccf, cp, cpl, daa, dec, di, ei, halt, inc, jp, jr, ld, ldh, nop, or, pop, push, res, ret, reti, rl, rla, rlc, rlca, rr, rra, rrc, rrca, rst, sbc, scf, set, sla, sra, srl, stop, sub, swap, xor`
+```text
+adc, add, and, bit, call, ccf, cp, cpl, daa, dec, di, ei, halt, inc, jp, jr, ld, ldh, nop, or, pop, push, res, ret, reti, rl, rla, rlc, rlca, rr, rra, rrc, rrca, rst, sbc, scf, set, sla, sra, srl, stop, sub, swap, xor
+```
 
 ##### `language.hex`
 
