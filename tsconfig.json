@@ -2,11 +2,17 @@
   "compilerOptions": {
     "target": "ES2020",
     "module": "commonjs",
-    "outDir": "./out",
+    "rootDir": "./src",
     "strict": true,
     "esModuleInterop": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "baseUrl": "./src",
+    "paths": {
+      "*": ["*"]
+    }
   },
-  "include": ["**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules", "out"]
 }
