@@ -311,7 +311,7 @@
      {
       "comment": "Local Label References (for instructions like jr z, .demo1)",
       "name": "entity.name.label.local.reference.gbz80",
-      "match": "(?<=\\b(jp|jr|call|rst|djnz)\\s+(?:[a-z]{1,2},\\s*)?)(\\.[a-zA-Z_][\\w#@]*)",
+      "match": "(?<=\\b(jp|jr|call|rst|djnz)\\s+(?:[a-z]{1,2},\\s*)?)(\\.[A-Z_a-z][#@\\w]*)",
       "captures": {
         "2": {
           "name": "entity.name.label.local.reference.gbz80"
