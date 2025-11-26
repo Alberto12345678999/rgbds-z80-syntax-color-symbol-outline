@@ -310,30 +310,26 @@
 
      {
       "comment": "Local Label References (for instructions like jr z, .demo1)",
-      "name": "entity.name.label.local.reference.gbz80",
-      "match": "(?<=\\b(jp|jr|call|rst|djnz)\\s+(?:[a-z]{1,2},\\s*)?)(\\.[A-Z_a-z][#@\\w]*)",
+      "match": "\\b(?i:(jp|jr|call|rst|djnz))\\s+(?:[a-z]{1,2},\\s*)?(\\.[A-Za-z_][#@\\w]*)",
       "captures": {
-        "2": {
-          "name": "entity.name.label.local.reference.gbz80"
-        }
+        "1": { "name": "keyword.op.controlflow.gbz80" },
+        "2": { "name": "entity.name.label.local.reference.gbz80" }
       }
     },
 
     {
       "comment": "Global Label References (non-dot-prefixed, after jump/call/rst instructions)",
-      "name": "entity.name.label.reference.gbz80",
-      "match": "(?<=\\b(?i:jp|jr|call|rst)[ \\t]+)[a-zA-Z_][\\w#@]*\\b"
+      "match": "\\b(?i:(jp|jr|call|rst))\\s+(?:[a-z]{1,2},\\s*)?([a-zA-Z_][\\w#@]*)\\b",
+      "captures": {
+        "1": { "name": "keyword.op.controlflow.gbz80" },
+        "2": { "name": "entity.name.label.reference.gbz80" }
+      }
     },
 
-      {
-      "comment": "Symbolic Variables (but NOT after control flow instructions like call/jp/jr/  rst/djnz)",
+    {
+      "comment": "Symbolic Variables (general, excluding control-flow handled above)",
       "name": "variable.other.symbolic.gbz80",
-      "match": "(?<!\\b(?:call|jp|jr|rst|djnz)\\s)(\\b[A-Za-z_][\\w#@]*\\b)",
-      "captures": {
-        "1": {
-          "name": "variable.other.symbolic.gbz80"
-        }
-      }
+      "match": "\\b[A-Za-z_][\\w#@]*\\b"
     },
 
     {
